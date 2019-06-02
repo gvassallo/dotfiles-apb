@@ -7,3 +7,6 @@
 - include: setup-ubuntu.yml
   when: ansible_distribution == 'Ubuntu'
   static: no
+
+- name: Install neovim plugins
+  command: nvim "+silent! PluginInstall!" +qall!
