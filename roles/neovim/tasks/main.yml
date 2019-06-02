@@ -8,6 +8,13 @@
   when: ansible_distribution == 'Ubuntu'
   static: no
 
+- name: Install python neovim plugin
+  pip:
+    name: neovim
+    executable: "{{ pip3_name }}"
+    state: present
+    extra_args: --user
+
 - name: Create .config/nvim directory
   file:
     path: ~/.config/nvim

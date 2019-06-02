@@ -1,2 +1,3 @@
 ---
 dotfiles_repo_local_destination: "~/dotfiles"
+pip3_name: "pip3"
