@@ -8,5 +8,16 @@
   when: ansible_distribution == 'Ubuntu'
   static: no
 
+- name: Create .config/nvim directory
+  file:
+    path: ~/.config/nvim
+    state: directory
+
+- name: Link init.vim file
+  file:
+    src: "{{ dotfiles_repo_local_destination }}/vim/init.vim"
+    dest: "~/.config/nvim/init.vim"
+    state: link
+
 - name: Install neovim plugins
   command: nvim "+silent! PluginInstall!" +qall!
