@@ -12,7 +12,7 @@ Usage
 --------------
 
 ```
-ansible-playbook ./dotfiles.yml`
+ansible-playbook ./dotfiles.yml
 ```
 
 [dotfiles]: https://github.com/gvassallo/dotfiles 
