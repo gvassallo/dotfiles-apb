@@ -1,0 +1,31 @@
+---
+- name: "Install zsh"
+  package:
+    name: "zsh"
+    state: present
+  become: "{{ 'false' if ansible_facts['system'] == 'Darwin' else 'true' }}"
+  become_user: root
+
+- name: "Find zsh in $PATH"
+  find:
+    pattern: "zsh"
+    paths: "{{ ansible_env.PATH.split(':') }}"
+    file_type: any
+    recurse: false
+  register: zsh_found
+
+- set_fact:
+    zsh_path: "{{ zsh_found.files[0].path }}"
+
+- name: "Change shell for {{ ansible_user_id }} to {{ zsh_path }}"
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: "{{ zsh_path }}"
+  become: true
+  become_user: root
+  ignore_errors: true
+
+- name: "Checkout oh-my-zsh repo"
+  git:
+    repo: "https://github.com/robbyrussell/oh-my-zsh.git"
+    dest: "~/.oh-my-zsh"

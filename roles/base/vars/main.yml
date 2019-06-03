@@ -9,3 +9,4 @@ dotfiles_files:
   - tmux
   - vim
   - tmux.conf
+  - zshrc
