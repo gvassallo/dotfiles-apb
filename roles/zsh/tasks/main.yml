@@ -25,7 +25,7 @@
   become_user: root
   ignore_errors: true
 
-- name: "Checkout oh-my-zsh repo"
+- name: "Checkout antigen repo"
   git:
-    repo: "https://github.com/robbyrussell/oh-my-zsh.git"
-    dest: "~/.oh-my-zsh"
+    repo: "https://github.com/zsh-users/antigen.git"
+    dest: "~/antigen"
