@@ -1,0 +1,6 @@
+bundler
+rake
+pry
+rubocop
+rt_rubocop_defaults
+atlassian-stash
