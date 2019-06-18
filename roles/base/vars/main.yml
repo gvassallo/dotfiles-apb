@@ -10,3 +10,4 @@ dotfiles_files:
   - vim
   - tmux.conf
   - zshrc
+  - gitconfig
