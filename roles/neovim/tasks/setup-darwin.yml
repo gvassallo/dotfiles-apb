@@ -1,9 +1,9 @@
 ---
 - name: Add neovim repository.
-  homebrew_tap:
+  community.general.homebrew_tap: 
     tap: neovim/homebrew-neovim
 
 - name: Ensure neovim is installed from homebrew.
-  homebrew:
+  community.general.homebrew: 
     name: neovim
     state: latest

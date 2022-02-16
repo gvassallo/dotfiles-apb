@@ -1,0 +1,38 @@
+---
+- name: Add cask-versions 
+  community.general.homebrew_tap:
+    tap: homebrew/cask-versions
+
+- name: Ensure jdk versions are installed 
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ jdk.versions }}"
+
+- name: Ensure jenv is installed
+  community.general.homebrew:
+    name: jenv
+    state: present
+
+- name: Ensure jenv directory exists
+  file: 
+    path: "{{ jenv_dir }}"
+    state: directory
+
+- name: Get available JDKs
+  shell: $SHELL -lc 'ls /Library/Java/JavaVirtualMachines/'
+  register: jdks
+  ignore_errors: yes
+  changed_when: False
+
+- name: Ensure JDKs are registered
+  shell: $SHELL -lc "jenv add /Library/Java/JavaVirtualMachines/{{ item }}/Contents/Home" # must use double quotes here
+  with_items: '{{ jdks.stdout_lines }}'
+  ignore_errors: yes
+  register: result
+  changed_when: "'already' not in result.stdout"
+  failed_when: "result.rc != 0 and 'already' not in result.stdout"
+
+- name: Set default jdk version
+  shell: |-
+    $SHELL -lc "jenv global {{ jdk.default_version }}"

@@ -1,8 +1,9 @@
 ---
 - hosts: localhost
   roles:
-    - base
-    - neovim
-    - tmux
-    - zsh
-    - rbenv
+    # - base
+    # - neovim
+    # - tmux
+    # - zsh
+    # - rbenv
+    - jdk

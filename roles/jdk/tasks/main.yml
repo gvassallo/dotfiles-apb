@@ -1,0 +1,5 @@
+---
+# setup/install tasks
+# Works only on Mac for now
+- include: setup-darwin.yml
+  when: ansible_os_family == 'Darwin'
