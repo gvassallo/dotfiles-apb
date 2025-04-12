@@ -1,0 +1,14 @@
+nvm_version: "0.39.7"
+
+# Node.js versions to install
+node_versions:
+  - "20.11.1"
+
+# Default Node.js version to use
+default_node_version: "20.11.1"
+
+# User for whom to install NVM
+nvm_user: "{{ ansible_user_id }}"
+
+# NVM installation directory
+nvm_dir: "~/.nvm"

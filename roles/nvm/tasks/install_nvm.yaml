@@ -1,0 +1,29 @@
+# roles/nvm/tasks/install_nvm.yml
+---
+- name: Create .nvm directory
+  file:
+    path: "{{ nvm_dir }}"
+    state: directory
+    owner: "{{ nvm_user }}"
+    mode: '0755'
+
+- name: Download and install NVM
+  shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v{{ nvm_version }}/install.sh | bash
+  args:
+    creates: "{{ nvm_dir }}/nvm.sh"
+  become_user: "{{ nvm_user }}"
+  become: "{{ nvm_user != ansible_user_id }}"
+
+- name: Set up NVM in zsh profile if it doesn't exist (macOS)
+  blockinfile:
+    path: "/Users/{{ nvm_user }}/.zshrc"
+    create: yes
+    marker: "# {mark} NVM ANSIBLE MANAGED BLOCK"
+    block: |
+      export NVM_DIR="{{ nvm_dir }}"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+  become_user: "{{ nvm_user }}"
+  become: "{{ nvm_user != ansible_user_id }}"
+  when: ansible_os_family == "Darwin"

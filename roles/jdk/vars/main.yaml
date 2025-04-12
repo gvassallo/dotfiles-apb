@@ -1,7 +1,7 @@
 ---
 jdk: 
-  default_version: 11
-  versions: 
+  default_version: 17
+  versions:
     - temurin8 
-    - temurin11
+    - temurin17
 jenv_dir: ~/.jenv/versions

@@ -1,0 +1,6 @@
+---
+- name: Include NVM installation tasks
+  include_tasks: install_nvm.yaml
+
+- name: Include Node.js installation tasks
+  include_tasks: install_node.yaml

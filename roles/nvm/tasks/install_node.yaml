@@ -1,0 +1,19 @@
+---
+- name: Install specified Node.js versions
+  shell: >
+    . {{ nvm_dir }}/nvm.sh && nvm install {{ item }}
+  args:
+    executable: /bin/sh
+    creates: "{{ nvm_dir }}/versions/node/v{{ item }}"
+  loop: "{{ node_versions }}"
+  become_user: "{{ nvm_user }}"
+  become: "{{ nvm_user != ansible_user_id }}"
+
+- name: Set default Node.js version
+  shell: >
+    . {{ nvm_dir }}/nvm.sh && nvm alias default {{ default_node_version }}
+  args:
+    executable: /bin/bash
+  become_user: "{{ nvm_user }}"
+  become: "{{ nvm_user != ansible_user_id }}"
+  when: default_node_version is defined

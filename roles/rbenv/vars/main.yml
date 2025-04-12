@@ -1,10 +1,9 @@
 ---
 rbenv:
-  default_ruby: "2.5.5"
+  default_ruby: "3.3.8"
   rubies:
-    - "2.6.3"
-    - "2.5.5"
-    - "jruby-9.2.7.0"
+    - "3.3.8"
+    - "2.7.5"
   plugins:
     - name: "rbenv-vars"
       repo: "https://github.com/rbenv/rbenv-vars.git"

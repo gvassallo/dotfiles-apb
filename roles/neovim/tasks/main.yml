@@ -1,9 +1,9 @@
 ---
 # setup/install tasks
-- include: setup-darwin.yml
+- include_tasks: setup-darwin.yml
   when: ansible_os_family == 'Darwin'
 
-- include: setup-ubuntu.yml
+- include_tasks: setup-ubuntu.yml
   when: ansible_distribution == 'Ubuntu'
 
 - name: Install python neovim plugin
