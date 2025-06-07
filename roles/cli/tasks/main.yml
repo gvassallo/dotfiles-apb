@@ -1,0 +1,6 @@
+---
+- name: Ensure cli tools are installed 
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ cli_tools }}"

@@ -12,7 +12,7 @@ Usage
 --------------
 
 ```
-ansible-playbook ./dotfiles.yml
+ansible-playbook ./dotfiles.yml --ask-become-pass
 ```
 
 [dotfiles]: https://github.com/gvassallo/dotfiles 

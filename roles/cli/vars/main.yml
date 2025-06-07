@@ -1,0 +1,4 @@
+---
+cli_tools: 
+  - the_silver_searcher
+  - fzf
